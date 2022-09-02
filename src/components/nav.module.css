@@ -1,0 +1,25 @@
+.nav {
+    display: flex;
+    position: sticky;
+    height: 77px;
+    width: 100%;
+    background: linear-gradient(
+      88.41deg,
+      #2d2929 3.73%,
+      rgba(130, 126, 126, 0.06) 101.12%
+    );
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 20px;
+  }
+.logo {
+    object-fit: contain;
+    width: 150px;
+    height: 100px;
+    position: relative;
+    right: 6px;
+  }
+ .menuIcon {
+    width: 40px;
+    height: 40px;
+  }
