@@ -6,6 +6,9 @@ import Image from '../components/Image';
 function Home() {
     return (
         <>
+        <div className={Styles.parrallax}>
+            
+        </div>
         <div className={Styles.home}>
         <Preloader display={false} />
           <Nav /> 
@@ -244,6 +247,10 @@ function Home() {
              </div>
              </div>
          </div>
+         </section>
+         <section className={Styles.fourthy}>
+             <h1 className={Styles.txt8}>Grab Tickets</h1>
+             <br />
          <Image style={{
             height: '300px',
             margin: 'auto',
@@ -251,7 +258,36 @@ function Home() {
             width: 'calc(100% - 40px',
             objectFit: 'scale-down'
          }} source={['./assets/img/lambox-min.png', './assets/img/lambox.png']} />
-         </section>
+         <div className={Styles.eventFlex}>
+             <div className={Styles.eventDate}>
+                <p>MAR</p>
+                <p>14</p>
+             </div>
+             <div className={Styles.eventTitle}>
+                 <p>ARTSCAPE THEATRE</p>
+                 <p>Cape Town, South africa</p>
+             </div>
+             <div className={Styles.eventButtonCont}>
+             <button className={Styles.eventButton}>
+                SOLD OUT!
+             </button>
+             </div>
+         </div>
+         <div className={Styles.eventFlex}>
+             <div className={Styles.eventDate}>
+                <p>MAR</p>
+                <p>21</p>
+             </div>
+             <div className={Styles.eventTitle}>
+                 <p>CITY AUDITORIUM</p>
+                 <p>Okayama, Japan</p>
+             </div>
+             <div className={Styles.eventButtonCont}>
+             <button className={Styles.eventBuy}>
+                BUY 
+             </button>
+             </div>
+         </div>
          <div className={Styles.eventFlex}>
              <div className={Styles.eventDate}>
                 <p>MAR</p>
@@ -263,10 +299,98 @@ function Home() {
              </div>
              <div className={Styles.eventButtonCont}>
              <button className={Styles.eventButton}>
-                SOLD OUT 
+                SOLD OUT!
              </button>
              </div>
          </div>
+         <div className={Styles.eventFlex}>
+             <div className={Styles.eventDate}>
+                <p>APR</p>
+                <p>10</p>
+             </div>
+             <div className={Styles.eventTitle}>
+                 <p>SIBELIUS ACADEMY</p>
+                 <p>Helsinki, Finland</p>
+             </div>
+             <div className={Styles.eventButtonCont}>
+             <button className={Styles.eventButton}>
+                FREE ENTRY
+             </button>
+             </div>
+         </div>
+         </section>
+        <section className={Styles.fifth}>
+        <h1 className={Styles.txt8}>Blog Posts</h1>
+            <div className={Styles.blogCont}>
+                <p className={Styles.blogDate}>
+                january 11, 2019
+                </p>
+                <p className={Styles.blogHeader}>
+                I will still be a DJ even when
+                I am a grandma
+                </p>
+                <p className={Styles.blogExcerpt}>
+                In a recent interview, she told
+                Showtime that staying relevant
+                would be the only proof she can
+                present to her grandchildren...
+                </p>
+                <button className={Styles.blogButton}>
+                READ MORE<CaretRightFilled color='white' style={{
+                fontSize: '20px',
+                fontWeight: 'bolder',
+                position: 'relative',
+                bottom: '1px'
+                }} /> 
+                </button>
+            </div>
+            <div className={Styles.blogCont}>
+                <p className={Styles.blogDate}>
+                february 11, 2019
+                </p>
+                <p className={Styles.blogHeader}>
+                Nigeria's DJ Lambo to release
+                her first EP
+                </p>
+                <p className={Styles.blogExcerpt}>
+                The EP is a testament to patience,
+                and above all, to the cultivation of
+                personal style and trusting in your
+                taste and all the different paths... 
+                </p>
+                <button className={Styles.blogButton}>
+                READ MORE<CaretRightFilled color='white' style={{
+                fontSize: '20px',
+                fontWeight: 'bolder',
+                position: 'relative',
+                bottom: '1px'
+                }} /> 
+                </button>
+            </div>
+            <div className={Styles.blogCont}>
+                <p className={Styles.blogDate}>
+                march 11, 2019
+                </p>
+                <p className={Styles.blogHeader}>
+                A lot of men are attracted
+                to me
+                </p>
+                <p className={Styles.blogExcerpt}>
+                I think I have both male and female
+                fans. I don’t know if my tomboy
+                personality scares men away from
+                me but I know that men that come...
+                </p>
+                <button className={Styles.blogButton}>
+                READ MORE<CaretRightFilled color='white' style={{
+                fontSize: '20px',
+                fontWeight: 'bolder',
+                position: 'relative',
+                bottom: '1px'
+                }} /> 
+                </button>
+            </div>
+        </section>
         </div>
         </>
     );

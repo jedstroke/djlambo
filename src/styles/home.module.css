@@ -1,11 +1,20 @@
 .home {
-    position: relative;
+    position: absolute;
+    z-index: 2;
     width: 100vw;
     height: 100vh;
     box-sizing: border-box;
-    background: #211e1e;
     overflow-y: auto;
+    background: #211e1e;
     overflow-x: hidden;
+}
+.parrallax {
+    position: absolute;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;  
+    /* background: red; */
+    overflow-y: hidden;
 }
 .firstTexts {
     position: relative;
@@ -129,11 +138,20 @@
 }
 .txt4 {
     text-align: center;
-    font-family: 'Gotham';
+    font-family: Montserrat;
     font-style: normal;
     font-weight: 500;
+    margin-bottom: 25px;
     font-size: 29px;
     line-height: 45px;
+}
+.txt4::after {
+    content: '';
+    width: 100px;
+    display: block;
+    margin: auto;
+    margin-top: 0px;
+    border-bottom: 2px solid white;
 }
 @keyframes first {
     0% {
@@ -171,12 +189,20 @@
 }
 .txt8 {
     text-align: center;
-    font-family: 'Gotham';
+    font-family: Montserrat;
     font-style: normal;
     font-weight: 500;
     font-size: 29px;
     line-height: 45px;
     margin-top: 50px;
+}
+.txt8::after {
+    content: '';
+    width: 100px;
+    display: block;
+    margin: auto;
+    margin-top: 0px;
+    border-bottom: 2px solid white;
 }
 .leftTrack {
     display: flex;
@@ -210,7 +236,7 @@
     font-weight: 100;
 }
 .track {
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    /* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; */
     box-sizing: border-box;
     padding: 15px;
     width:calc(100% - 55px);
@@ -226,7 +252,7 @@
     border-radius: 5px;
     box-sizing: border-box;
     padding: 15px;
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+    box-shadow: rgba(0, 0, 0, .1) 0px 54px 55px, rgba(0, 0, 0, .1) 0px -12px 30px, rgba(0, 0, 0, .1) 0px 4px 6px, rgba(0, 0, 0, .1) 0px 12px 13px, rgba(0, 0, 0, .1) 0px -3px 5px;
     height: 75px;
     width:calc(100% - 55px);
     margin: auto;
@@ -264,7 +290,6 @@
     position: relative;
     width: 100%;
     height: fit-content;
-    min-height: 100%;
     background: #211e1e;
 }
 .eventFlex {
@@ -272,38 +297,44 @@
     width: calc(100% - 40px);
     margin: auto;
     height: fit-content;
-    margin-bottom: 100px;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 .eventDate {
-    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-    padding: 10px;
+    box-shadow: rgba(0, 0, 0, .15) 0px 54px 55px, rgba(0, 0, 0, .15) 0px -12px 30px, rgba(0, 0, 0, .15) 0px 4px 6px, rgba(0, 0, 0, .15) 0px 12px 13px, rgba(0, 0, 0, .15) 0px -3px 5px;
     margin-right: auto;
-    height: 80px;
+    height: 60px;
     width: 75px;
     color: aliceblue;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
     border-radius: 5px;
 }
 .eventDate > p:nth-child(1){
-    line-height: 33px;
     font-family: Montserrat;
     font-size: 22px;
     font-weight: bolder;
     width: 100%;
+    flex: 1;
     text-align: center;
-    margin-bottom: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .eventDate > p:nth-child(2){
-    font-size: 25px;
-    font-weight: lighter;
-    font-family: cursive;
-    margin-top: -15px;
+    font-size: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10px;
+    flex: 1;
+    font-family: 'Gotham Light';
 }
 .eventTitle {
-    height: 80px;
+    height: 60px;
     color: white;
     display: flex;
     flex-direction: column;
@@ -336,19 +367,76 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80px;
+    height: 60px;
+    position: relative;
     margin-left: auto;
 }
 .eventButton {
     height: 40px;
     width: 100%;
-    padding: 0px 10px;
-    border: white solid 1px;
     font-size: 13px;
-    font-weight: bolder;
     color: white;
     background: #211e1e;
     border-radius: 5px;
     white-space: nowrap;
-    text-overflow: ellipsis;
+}
+.eventBuy {
+    box-shadow: rgba(0, 0, 0, .15) 0px 54px 55px, rgba(0, 0, 0, .15) 0px -12px 30px, rgba(0, 0, 0, .15) 0px 4px 6px, rgba(0, 0, 0, .15) 0px 12px 13px, rgba(0, 0, 0, .15) 0px -3px 5px;
+    height: 40px;
+    width: 100%;
+    font-size: 13px;
+    color: white;
+    background: #211e1e;
+    border-radius: 5px;
+    white-space: nowrap;
+}
+.eventBuy:active {
+    border: 2px solid white;
+}
+.fifth {
+    color: white;
+    min-height: 100vh;
+    height: fit-content;
+}
+.fourthy {
+    color: white;
+    height: fit-content;
+}
+.blogCont { 
+    width: calc(100% - 40px);
+    margin: auto;
+    gap: 12px;
+    height: fit-content;
+    display: flex;
+    /* padding: 20px; */
+    color: white;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    font-family: Montserrat;
+    flex-direction: column;
+}
+.blogDate {
+    font-size: 13px;
+}
+.blogHeader {
+    text-transform: capitalize;
+    width: 100%;
+    font-size: 22px;
+    font-weight: bolder;
+}
+.blogExcerpt {
+    width: 100%;
+    height: fit-content;
+    font-size: 16px;
+}
+.blogButton {
+   font-weight: bolder;
+   font-size: 16px;
+   display: flex;
+   box-shadow: none;
+   background: none;
+   color: white;
+   gap: 10px;
+   justify-content: flex-start;
+   align-items: center; 
 }
