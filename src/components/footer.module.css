@@ -1,8 +1,7 @@
 .footerCont {
     color: white;
     width: 100%;
-    background-attachment: fixed;
-    bottom: 0px;
+    box-shadow: rgba(0, 0, 0, .2) 0px 54px 55px, rgba(0, 0, 0, .2) 0px -12px 30px, rgba(0, 0, 0, .2) 0px 4px 6px, rgba(0, 0, 0, .2) 0px 12px 13px, rgba(0, 0, 0, .2) 0px -3px 5px;
     font-family: Montserrat;
     height: 290px;
     font-weight: 800;
@@ -11,7 +10,10 @@
     justify-content: center;
     align-items: center;
     gap: 30px;
-    background: black;
+    margin-bottom: 0px;
+    /* background: rgb(107, 198, 235); */
+    /* opacity: .3; */
+    background: linear-gradient(88.41deg, #1D1B1B 3.73%, rgba(130, 126, 126, 0.06) 101.12%);
 }
 .textCenter {
     position: relative;

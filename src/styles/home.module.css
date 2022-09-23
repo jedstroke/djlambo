@@ -209,7 +209,7 @@
     flex-direction: column;
     align-items: flex-start;
     margin: auto;
-    transform: translateX(-35%);
+    /* transform: translateX(-35%); */
     margin-top: 40px;
     margin-bottom: 40px;
 }
@@ -217,7 +217,7 @@
     margin-top: 40px;
     display: flex;
     margin: auto;
-    transform: translateX(50%);
+    /* transform: translateX(50%); */
     flex-direction: column;
     margin-bottom: 40px;
 }
@@ -252,7 +252,7 @@
     border-radius: 5px;
     box-sizing: border-box;
     padding: 15px;
-    box-shadow: rgba(0, 0, 0, .1) 0px 54px 55px, rgba(0, 0, 0, .1) 0px -12px 30px, rgba(0, 0, 0, .1) 0px 4px 6px, rgba(0, 0, 0, .1) 0px 12px 13px, rgba(0, 0, 0, .1) 0px -3px 5px;
+    box-shadow: rgba(0, 0, 0, .2) 0px 54px 55px, rgba(0, 0, 0, .2) 0px -12px 30px, rgba(0, 0, 0, .2) 0px 4px 6px, rgba(0, 0, 0, .2) 0px 12px 13px, rgba(0, 0, 0, .2) 0px -3px 5px;
     height: 75px;
     width:calc(100% - 55px);
     margin: auto;
@@ -314,7 +314,7 @@
 }
 .eventDate > p:nth-child(1){
     font-family: Montserrat;
-    font-size: 22px;
+    font-size: 18px;
     font-weight: bolder;
     width: 100%;
     flex: 1;
@@ -347,7 +347,7 @@
 }
 .eventTitle > p:nth-child(1){
     font-family: Montserrat;
-    font-size: 22px;
+    font-size: 18px;
     width: 150px;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -420,7 +420,7 @@
 .blogHeader {
     text-transform: capitalize;
     width: 100%;
-    font-size: 22px;
+    font-size: 18px;
     font-weight: bolder;
 }
 .blogExcerpt {
