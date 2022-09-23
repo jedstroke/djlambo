@@ -3,6 +3,7 @@ import Styles from '../styles/home.module.css'
 import Preloader from '../components/Preloader'
 import Nav from '../components/Nav';
 import Image from '../components/Image';
+import Footer from '../components/Footer';
 function Home() {
     return (
         <>
@@ -391,6 +392,7 @@ function Home() {
                 </button>
             </div>
         </section>
+        <Footer />
         </div>
         </>
     );

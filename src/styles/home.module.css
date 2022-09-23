@@ -164,7 +164,7 @@
 .txt5 {
     width: 271px;
     margin: auto;
-    font-family: 'Gotham';
+    font-family: 'Montserrat';
     font-style: normal;
     font-weight: bold;
     font-size: 24px;
@@ -174,7 +174,7 @@
     margin-bottom: 18px;
 }
 .txt6 {
-    font-family: 'Gotham Light';
+    font-family: 'Montserrat';
     font-size: 20px;
     width: 271px;
     font-weight: 100;
@@ -395,7 +395,6 @@
 }
 .fifth {
     color: white;
-    min-height: 100vh;
     height: fit-content;
 }
 .fourthy {
