@@ -4,7 +4,7 @@ function Footer() {
     return (<>
         <div className={Styles.footerCont}>
             <img className={Styles.footerLogo} src="./assets/img/footer-logo.png" alt="" />
-            <p className={Styles.textCenter}>©2022 Jed, All rights Reserved.</p>
+            <p className={Styles.textCenter}>©2022 <a href="https://www.instagram.com/jedstroke/"><u>Jed</u></a>, All rights Reserved.</p>
             <div className={Styles.iconSet}>
             <a href="https://facebook.com/djlamboofficial/">
             <FacebookFilled />

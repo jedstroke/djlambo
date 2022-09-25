@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { CaretRightFilled, PauseOutlined, 
     CaretRightOutlined, InstagramOutlined } from '@ant-design/icons';
+import { useNavigate} from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import Styles from '../styles/home.module.css'
 import Preloader from '../components/Preloader'
@@ -8,9 +9,12 @@ import Nav from '../components/Nav';
 import Image from '../components/Image';
 import Footer from '../components/Footer';
 function Home() {
+    const navigate = useNavigate();
     const [pin, setPin] = useState(true);
+    const [preloader, setPreloader] = useState(true);
     const [vinyl, setVinyl] = useState(true);
     const [lambo, setLambo] = useState(true);
+    const [instaOverlay, setInstaOverlay] = useState([true, false, false, false, false, false])
     const [firstTrack, setFirstTrack] = useState(false);
     const [tracks, setTrack] = useState([true, false, false, false, false]);
     const song1 = useRef();
@@ -63,25 +67,24 @@ function Home() {
         const observables = document.querySelectorAll('#observables');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if(entry.isIntersecting && entry.target.dataset.single === '1'){
-                    observables[0].style.transform='translateX(0%)';
+                if(entry.isIntersecting && entry.target.dataset.reset === 'true'){
+                    observables[1].style.transform='translateX(-35%)';
+                    observables[2].style.transform='translateX(50%)';
+                    observables[3].style.transform='translateX(-35%)'
                 }
-                if(entry.isIntersecting && entry.target.dataset.single === '2'){
+                if(entry.isIntersecting && entry.target.dataset.single === '1'){
                     observables[1].style.transform='translateX(0%)';
                 }
-                if(entry.isIntersecting && entry.target.dataset.single === '3'){
+                if(entry.isIntersecting && entry.target.dataset.single === '2'){
                     observables[2].style.transform='translateX(0%)';
                 }
+                if(entry.isIntersecting && entry.target.dataset.single === '3'){
+                    observables[3].style.transform='translateX(0%)';
+                }
                 if(entry.isIntersecting && entry.target.dataset.ticket === 'true'){
-                    observables[0].style.transform='translateX(-35%)';
-                    observables[1].style.transform='translateX(50%)';
-                    observables[2].style.transform='translateX(-35%)';
-                }
-                if(entry.isIntersecting && entry.target.dataset.outta === 'true'){
-                    observables[5].style.filter = 'blur(10px)';
-                }
-                if(entry.isIntersecting && entry.target.dataset.footer === 'true'){
-                    observables[5].style.filter = 'blur(0px)';
+                    observables[1].style.transform='translateX(-35%)';
+                    observables[2].style.transform='translateX(50%)';
+                    observables[3].style.transform='translateX(-35%)';
                 }
             })
         }, {
@@ -91,10 +94,21 @@ function Home() {
             observer.observe(el);
         })
     }, [])
+    useEffect(() => {
+        if(sessionStorage.getItem('preloaded') == 'true'){
+            setPreloader(false);
+        }
+        if(!pin && !lambo && !vinyl){
+            setTimeout(() => {
+                setPreloader(false);
+            }, 5000)
+            sessionStorage.setItem('preloaded', 'true');
+        }
+    }, [pin, vinyl ,lambo])
     return (
         <>
         <div ref={main} className={Styles.home}>
-        <Preloader display={pin || (vinyl && lambo)} />
+        <Preloader display={preloader} />
           <Nav /> 
          <section className={Styles.first}>
             <div className={Styles.firstTexts}>
@@ -136,7 +150,7 @@ function Home() {
             <Image style={{
                 width: '271px',
                 height: '193.8px'}} center={true} source={['./assets/img/venusNmars-min.png', './assets/img/venusNmars.png']} />
-                <p className={Styles.txt5}>Venus and Mars <br /><span className={Styles.txt6}>2021</span></p>
+                <p id='observables' data-reset='true'  className={Styles.txt5}>Venus and Mars <br /><span className={Styles.txt6}>2021</span></p>
                 {/* Sirius */}
                 <div onClick={() => {
                     track1();
@@ -280,7 +294,9 @@ function Home() {
                 </div>
                 <br />
                 <br />
-                <div className={Styles.seeAll}>
+                <div onClick={() => {
+                    navigate('/my-pitch')
+                }} className={Styles.seeAll}>
                 <p className={Styles.seeAllTxt}>See All</p><CaretRightOutlined color={'lavender'} style={{
                     fontSize: '20px'
                 }} />
@@ -321,7 +337,9 @@ function Home() {
                 <span className={Styles.sideTrackYear}>2015</span>
             </div>
             </div>
-            <div className={Styles.seeAll}>
+            <div onClick={() => {
+                    navigate('/my-pitch')
+                }} className={Styles.seeAll}>
                 <p className={Styles.seeAllTxt}>See All</p><CaretRightOutlined color={'lavender'} style={{
                     fontSize: '20px'
                 }} />
@@ -334,14 +352,16 @@ function Home() {
                 width: '150px',
                 height: '150px'
              }}>
-             <div className={Styles.instaBox}>
+             <div onClick={() => {
+                    setInstaOverlay([!instaOverlay[0], false, false, false, false, false])
+                }} className={Styles.instaBox}>
                 <Image source={['./assets/img/insta1-min.png', './assets/img/insta1.png']} style={{
                     objectFit: 'contain',
                     borderRadius: '15px',
                     width: '150px',
                     height: '150px'
                 }} />
-                <div className={Styles.instaOverlay} style={{display: 'flex'}}>
+                <div className={Styles.instaOverlay} style={{display: instaOverlay[0] ? 'flex':'none'}}>
                     <a href="https://www.instagram.com/djlambo_/">                        
                 <InstagramOutlined  style={{
                     color: 'lavender',
@@ -355,14 +375,16 @@ function Home() {
                 width: '150px',
                 height: '150px'
              }}>
-             <div className={Styles.instaBox}>
+             <div onClick={() => {
+                    setInstaOverlay([false, !instaOverlay[1], false, false, false, false])
+                }} className={Styles.instaBox}>
                 <Image source={['./assets/img/insta2-min.png', './assets/img/insta2.png']} style={{
                     objectFit: 'contain',
                     borderRadius: '15px',
                     width: '150px',
                     height: '150px'
                 }} />
-                <div className={Styles.instaOverlay} style={{display: 'flex'}}>
+                <div className={Styles.instaOverlay} style={{display: instaOverlay[1] ? 'flex':'none'}}>
                 <a href="https://www.instagram.com/djlambo_/">                        
                 <InstagramOutlined  style={{
                     color: 'lavender',
@@ -376,14 +398,16 @@ function Home() {
                 width: '150px',
                 height: '150px'
              }}>
-             <div className={Styles.instaBox}>
+             <div onClick={() => {
+                    setInstaOverlay([false, false, !instaOverlay[2], false, false, false])
+                }} className={Styles.instaBox}>
                 <Image source={['./assets/img/insta3-min.png', './assets/img/insta3.png']} style={{
                     objectFit: 'contain',
                     borderRadius: '15px',
                     width: '150px',
                     height: '150px'
                 }} />
-                <div className={Styles.instaOverlay} style={{display: 'flex'}}>
+                <div  className={Styles.instaOverlay} style={{display: instaOverlay[2] ? 'flex':'none'}}>
                 <a href="https://www.instagram.com/djlambo_/">                        
                 <InstagramOutlined  style={{
                     color: 'lavender',
@@ -397,14 +421,16 @@ function Home() {
                 width: '150px',
                 height: '150px'
              }}>
-             <div className={Styles.instaBox}>
+             <div  onClick={() => {
+                    setInstaOverlay([false, false, false, !instaOverlay[3], false, false])
+                }} className={Styles.instaBox}>
                 <Image source={['./assets/img/insta4-min.png', './assets/img/insta4.png']} style={{
                     objectFit: 'contain',
                     borderRadius: '15px',
                     width: '150px',
                     height: '150px'
                 }} />
-                <div className={Styles.instaOverlay} style={{display: 'flex'}}>
+                <div className={Styles.instaOverlay} style={{display: instaOverlay[3] ? 'flex':'none'}}>
                 <a href="https://www.instagram.com/djlambo_/">                        
                 <InstagramOutlined  style={{
                     color: 'lavender',
@@ -418,14 +444,16 @@ function Home() {
                 width: '150px',
                 height: '150px'
              }}>
-             <div className={Styles.instaBox}>
+             <div  onClick={() => {
+                    setInstaOverlay([false, false, false, false, !instaOverlay[4], false])
+                }} className={Styles.instaBox}>
                 <Image source={['./assets/img/insta5-min.png', './assets/img/insta5.png']} style={{
                     objectFit: 'contain',
                     borderRadius: '15px',
                     width: '150px',
                     height: '150px'
                 }} />
-                <div className={Styles.instaOverlay} style={{display: 'flex'}}>
+                <div className={Styles.instaOverlay} style={{display: instaOverlay[4] ? 'flex':'none'}}>
                 <a href="https://www.instagram.com/djlambo_/">                        
                 <InstagramOutlined  style={{
                     color: 'lavender',
@@ -439,14 +467,16 @@ function Home() {
                 width: '150px',
                 height: '150px'
              }}>
-             <div className={Styles.instaBox}>
+             <div  onClick={() => {
+                    setInstaOverlay([false, false, false, false, false,!instaOverlay[5]])
+                }} className={Styles.instaBox}>
                 <Image source={['./assets/img/insta6-min.png', './assets/img/insta6.png']} style={{
                     objectFit: 'contain',
                     borderRadius: '15px',
                     width: '150px',
                     height: '150px'
                 }} />
-                <div className={Styles.instaOverlay} style={{display: 'flex'}}>
+                <div className={Styles.instaOverlay} style={{display: instaOverlay[5] ? 'flex':'none'}}>
                     <a href="https://www.instagram.com/djlambo_/">                        
                 <InstagramOutlined  style={{
                     color: 'lavender',
@@ -493,7 +523,9 @@ function Home() {
                  <p>Okayama, Japan</p>
              </div>
              <div className={Styles.eventButtonCont}>
-             <button className={Styles.eventBuy}>
+             <button onClick={() => {
+                    navigate('/my-pitch')
+                }} className={Styles.eventBuy}>
                 BUY 
              </button>
              </div>
@@ -545,7 +577,9 @@ function Home() {
                 would be the only proof she can
                 present to her grandchildren...
                 </p>
-                <button className={Styles.blogButton}>
+                <button onClick={() => {
+                    navigate('/my-pitch')
+                }} className={Styles.blogButton}>
                 READ MORE<CaretRightFilled color='lavender' style={{
                 fontSize: '20px',
                 fontWeight: 'bolder',
@@ -568,7 +602,9 @@ function Home() {
                 personal style and trusting in your
                 taste and all the different paths... 
                 </p>
-                <button className={Styles.blogButton}>
+                <button onClick={() => {
+                    navigate('/my-pitch')
+                }} className={Styles.blogButton}>
                 READ MORE<CaretRightFilled color='lavender' style={{
                 fontSize: '20px',
                 fontWeight: 'bolder',
@@ -591,7 +627,9 @@ function Home() {
                 personality scares men away from
                 me but I know that men that come...
                 </p>
-                <button className={Styles.blogButton}>
+                <button onClick={() => {
+                    navigate('/my-pitch')
+                }} className={Styles.blogButton}>
                 READ MORE<CaretRightFilled color='lavender' style={{
                 fontSize: '20px',
                 fontWeight: 'bolder',
@@ -601,7 +639,7 @@ function Home() {
                 </button>
             </div>
         </section>
-        <div id='observables' data-footer='true' className={Styles.footerCont}>
+        <div className={Styles.footerCont}>
         <Footer />
         </div>
         </div>

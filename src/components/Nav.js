@@ -1,7 +1,9 @@
+import { useNavigate} from 'react-router-dom';
 import { useState } from 'react';
 import { CloseOutlined } from '@ant-design/icons';
 import Styles from './nav.module.css';
 function Nav() {
+    const navigate = useNavigate();
     const [menu, setMenu] = useState(false);
     return (<>
         <div className={Styles.nav}>
@@ -25,11 +27,21 @@ function Nav() {
                 fontWeight:'bolder'
                 
             }}  />
-            <p className={Styles.home}>HOME</p>
-            <p className={Styles.blog}>BLOG</p>
-            <p className={Styles.event}>SHOP</p>
-            <p className={Styles.merch}>EVENT</p>
-            <p className={Styles.sounds}>SONGS</p>
+            <p onClick={() => {
+                navigate('/my-pitch')
+            }} className={Styles.home}>HOME</p>
+            <p onClick={() => {
+                navigate('/my-pitch')
+            }} className={Styles.merch}>BLOG</p>
+            <p onClick={() => {
+                navigate('/my-pitch')
+            }} className={Styles.event}>SHOP</p>
+            <p onClick={() => {
+                navigate('/my-pitch')
+            }} className={Styles.merch}>EVENT</p>
+            <p onClick={() => {
+                navigate('/my-pitch')
+            }} className={Styles.sounds}>SONGS</p>
         </div>
     </>);
 }
