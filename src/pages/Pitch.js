@@ -42,6 +42,10 @@ function Pitch() {
           position:'relative',
           top:'-35px'
       }}>My pitch to <br /> <span className={Styles.span}>DJ LAMBO</span> <br /> And Co <span className={Styles.span}>DEVs</span> <br/> (<span className={Styles.span}>Voice Note</span>)</h1>
+      <p style={{
+        position:'relative',
+        top:'-20px'
+      }}>(Wait for the Waveform 🔊)</p>
       <div style={{
           width:'100%'
       }}>
