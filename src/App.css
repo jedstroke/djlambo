@@ -1,0 +1,13 @@
+.menuIn {
+    transform: translateX(0);
+}
+.menuOut {
+    transform: translateX(-100%);
+}
+.comeBack {
+    transform: translateX(0%);
+}
+a {
+    text-decoration: none;
+    color: white;
+}

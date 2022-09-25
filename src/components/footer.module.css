@@ -4,15 +4,13 @@
     box-shadow: rgba(0, 0, 0, .2) 0px 54px 55px, rgba(0, 0, 0, .2) 0px -12px 30px, rgba(0, 0, 0, .2) 0px 4px 6px, rgba(0, 0, 0, .2) 0px 12px 13px, rgba(0, 0, 0, .2) 0px -3px 5px;
     font-family: Montserrat;
     height: 290px;
-    font-weight: 800;
+    font-weight: 500;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 30px;
     margin-bottom: 0px;
-    /* background: rgb(107, 198, 235); */
-    /* opacity: .3; */
     background: linear-gradient(88.41deg, #1D1B1B 3.73%, rgba(130, 126, 126, 0.06) 101.12%);
 }
 .textCenter {
@@ -25,7 +23,10 @@
     height: 93px;
 }
 .iconSet {
-   display: flex; 
+   display: flsex; 
    gap: 20px;
    font-size: 35px;
+}
+.iconSet > a {
+    margin: 0px 10px;
 }

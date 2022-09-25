@@ -1,17 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.6d14f05a.css?60",
-    "main.js": "/static/js/main.9f972192.js?90",
-    "static/js/787.1ca72fa6.chunk.js?54": "/static/js/787.1ca72fa6.chunk.js?54",
-    "static/media/GothamBook.ttf": "/static/media/GothamBook.58fb9151c57e59668f17.ttf",
-    "static/media/GothamLight.ttf": "/static/media/GothamLight.03e7ff609ba3bf798fa4.ttf",
+    "main.css": "/static/css/main.001e3e0f.css?90",
+    "main.js": "/static/js/main.c4c46d70.js?29",
+    "static/js/787.905c6a9a.chunk.js?82": "/static/js/787.905c6a9a.chunk.js?82",
+    "static/media/lambox.png": "/static/media/lambox.de08f040344e67759dfd.png",
+    "static/media/insta3.png": "/static/media/insta3.8283eef4117c96fe5ce3.png",
+    "static/media/sharky-min.jpeg": "/static/media/sharky-min.cf2310cd7afdce60d761.jpeg",
     "index.html": "/index.html",
-    "main.6d14f05a.css.map?60": "/static/css/main.6d14f05a.css.map?60",
-    "main.9f972192.js.map?90": "/static/js/main.9f972192.js.map?90",
-    "787.1ca72fa6.chunk.js.map?54": "/static/js/787.1ca72fa6.chunk.js.map?54"
+    "main.001e3e0f.css.map?90": "/static/css/main.001e3e0f.css.map?90",
+    "main.c4c46d70.js.map?29": "/static/js/main.c4c46d70.js.map?29",
+    "787.905c6a9a.chunk.js.map?82": "/static/js/787.905c6a9a.chunk.js.map?82"
   },
   "entrypoints": [
-    "static/css/main.6d14f05a.css?60",
-    "static/js/main.9f972192.js?90"
+    "static/css/main.001e3e0f.css?90",
+    "static/js/main.c4c46d70.js?29"
   ]
 }

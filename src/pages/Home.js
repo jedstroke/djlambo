@@ -1,17 +1,100 @@
-import { CaretRightFilled, PauseOutlined, CaretRightOutlined, InstagramOutlined } from '@ant-design/icons';
+import { useState, useRef, useEffect } from 'react';
+import { CaretRightFilled, PauseOutlined, 
+    CaretRightOutlined, InstagramOutlined } from '@ant-design/icons';
+import toast, { Toaster } from 'react-hot-toast';
 import Styles from '../styles/home.module.css'
 import Preloader from '../components/Preloader'
 import Nav from '../components/Nav';
 import Image from '../components/Image';
 import Footer from '../components/Footer';
 function Home() {
+    const [pin, setPin] = useState(true);
+    const [vinyl, setVinyl] = useState(true);
+    const [lambo, setLambo] = useState(true);
+    const [firstTrack, setFirstTrack] = useState(false);
+    const [tracks, setTrack] = useState([true, false, false, false, false]);
+    const song1 = useRef();
+    const song2 = useRef();
+    const song3 = useRef();
+    const song4 = useRef();
+    const song5 = useRef();
+    const main = useRef();
+    function track1(){ 
+       song2.current.pause();
+       song3.current.pause();
+       song4.current.pause();
+       song5.current.pause();
+       song1.volume = '0.5';
+       !tracks[0] ? song1.current.play() : song1.current.pause();
+    }
+    function track2(){
+        song1.current.pause();
+        song3.current.pause();
+        song4.current.pause();
+        song5.current.pause();
+        song2.volume = '0.5';
+        !tracks[1] ? song2.current.play() : song2.current.pause();
+    }
+    function track3(){
+        song2.current.pause();
+        song1.current.pause();
+        song4.current.pause();
+        song5.current.pause();
+        song3.volume = '0.5';
+       !tracks[2] ? song3.current.play() : song3.current.pause();
+    }
+    function track4(){
+        song2.current.pause();
+        song3.current.pause();
+        song1.current.pause();
+        song5.current.pause();
+        song4.volume = '0.5';
+        !tracks[3] ? song4.current.play() : song4.current.pause();
+    }
+    function track5(){
+        song2.current.pause();
+        song3.current.pause();
+        song4.current.pause();
+        song1.current.pause();
+        song5.volume = '0.5';
+        !tracks[4] ? song5.current.play() : song5.current.pause();
+    }
+    useEffect(() => {
+        const observables = document.querySelectorAll('#observables');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting && entry.target.dataset.single === '1'){
+                    observables[0].style.transform='translateX(0%)';
+                }
+                if(entry.isIntersecting && entry.target.dataset.single === '2'){
+                    observables[1].style.transform='translateX(0%)';
+                }
+                if(entry.isIntersecting && entry.target.dataset.single === '3'){
+                    observables[2].style.transform='translateX(0%)';
+                }
+                if(entry.isIntersecting && entry.target.dataset.ticket === 'true'){
+                    observables[0].style.transform='translateX(-35%)';
+                    observables[1].style.transform='translateX(50%)';
+                    observables[2].style.transform='translateX(-35%)';
+                }
+                if(entry.isIntersecting && entry.target.dataset.outta === 'true'){
+                    observables[5].style.filter = 'blur(10px)';
+                }
+                if(entry.isIntersecting && entry.target.dataset.footer === 'true'){
+                    observables[5].style.filter = 'blur(0px)';
+                }
+            })
+        }, {
+            root: main.current
+        });
+        observables.forEach(el => {
+            observer.observe(el);
+        })
+    }, [])
     return (
         <>
-        <div className={Styles.parrallax}>
-            
-        </div>
-        <div className={Styles.home}>
-        <Preloader display={false} />
+        <div ref={main} className={Styles.home}>
+        <Preloader display={pin || (vinyl && lambo)} />
           <Nav /> 
          <section className={Styles.first}>
             <div className={Styles.firstTexts}>
@@ -26,10 +109,27 @@ function Home() {
             </p>
             </div>
             <div className={Styles.vinyl}>
-                <img className={Styles.pin} src="./assets/img/pin.png" alt="" />
-                <img className={Styles.disc} src="./assets/img/vinyl.png" alt="" />
+                <img className={Styles.pin} src="./assets/img/pin.png" onLoad={() => {
+                    if(window.innerWidth > window.innerHeight){
+                        toast("Use a portrait screen 🙏🏽", {
+                          duration: 10000,
+                          style: {
+                            width: 'fit-content',
+                            lavenderSpace: 'nowrap'
+                          }
+                        })
+                        setPin(true);
+                      }else{
+                        setPin(false);
+                      }
+                }} alt="" />
+                <img className={Styles.disc} src="./assets/img/vinyl.png" alt="" onLoad={() => {
+                    setVinyl(false);
+                }} />
             </div>
-            <img src="./assets/img/lamba.png" alt="" className={Styles.lamba} />
+            <img src="./assets/img/lamba.png" alt="" className={Styles.lamba} onLoad={() => {
+                    setLambo(false);
+             }} />
          </section>
          <section className={Styles.second}>
             <h1 className={Styles.txt4}>Latest Release</h1>
@@ -37,62 +137,159 @@ function Home() {
                 width: '271px',
                 height: '193.8px'}} center={true} source={['./assets/img/venusNmars-min.png', './assets/img/venusNmars.png']} />
                 <p className={Styles.txt5}>Venus and Mars <br /><span className={Styles.txt6}>2021</span></p>
-                <h2 className={Styles.txt7}>Tracks</h2>
-                <div className={Styles.track}>
+                {/* Sirius */}
+                <div onClick={() => {
+                    track1();
+                    setFirstTrack(true);
+                    setTrack([!tracks[0], false, false, false, false])
+                }} className={`${tracks[0] ? Styles.trackActive:Styles.track}`}>
+                    <audio onEnded={() => {
+                        setTrack([!tracks[0], false, false, false, false]);
+                    }} ref={song1} src='./assets/songs/Sirius-min.mp3' ></audio>
                     <div className={Styles.subTrack11}>
                     <span className={Styles.trackTitle}>1. Sirius</span>
                     <span className={Styles.trackDuration}>3:27</span>
                     </div>
                     <div className={Styles.subTrack12}>
                     <span className={Styles.trackArtiste}>Dr Caise, DJ Lambo</span>
-                    <span className={Styles.trackControl}><CaretRightFilled color='white'  /></span>
+                    <span style={{
+                        display: tracks[0] && firstTrack ? 'none':'inline'
+                    }} className={Styles.trackControl}><CaretRightFilled style={{
+                        fontSize: '23px', position: 'relative', top:'-6px'
+                    }} color='lavender'  /></span>
+                    <span style={{
+                        display: tracks[0] && firstTrack ? 'inline':'none'
+                    }} className={Styles.trackControl}>
+                    <PauseOutlined style={{
+                        fontSize: '23px', position: 'relative', top:'-6px'
+                    }} color='lavender'/>
+                    </span>
                     </div>
                 </div>
-                <div className={Styles.track}>
+                {/* Rigel */}
+                <div onClick={() => {
+                    track2();
+                    setTrack([false, !tracks[1], false, false, false])
+                }} className={`${tracks[1] ? Styles.trackActive:Styles.track}`}>
+                    <audio onEnded={() => {
+                        setTrack([false, !tracks[1], false, false, false]);
+                    }} src="./assets/songs/Rigel-min.mp3" ref={song2}></audio>
                     <div className={Styles.subTrack11}>
                     <span className={Styles.trackTitle}>2. Rigel</span>
                     <span className={Styles.trackDuration}>3:27</span>
                     </div>
                     <div className={Styles.subTrack12}>
                     <span className={Styles.trackArtiste}>Dr Caise, DJ Lambo</span>
-                    <span className={Styles.trackControl}><CaretRightFilled color='white'  /></span>
+                    <span style={{
+                        display: tracks[1] ? 'none':'inline'
+                    }} className={Styles.trackControl}><CaretRightFilled style={{
+                        fontSize: '23px', position: 'relative', top:'-6px'
+                    }} color='lavender'  /></span>
+                    <span style={{
+                        display: tracks[1] ? 'inline':'none'
+                    }} className={Styles.trackControl}>
+                    <PauseOutlined style={{
+                        fontSize: '23px', position: 'relative', top:'-6px'
+                    }} color='lavender'/>
+                    </span>
                     </div>
                 </div>
-                <div className={Styles.track}>
+                {/* Canopus */}
+                <div onClick={() => {
+                    track3();
+                    setTrack([false, false, !tracks[2], false, false])
+                }} className={`${tracks[2] ? Styles.trackActive:Styles.track}`}>
+                    <audio onEnded={() => {
+                        setTrack([false, false, !tracks[2], false, false]);
+                    }} ref={song3} src='./assets/songs/Canopus-min.mp3' ></audio>
                     <div className={Styles.subTrack11}>
                     <span className={Styles.trackTitle}>3. Canopus</span>
                     <span className={Styles.trackDuration}>4:01</span>
                     </div>
                     <div className={Styles.subTrack12}>
                     <span className={Styles.trackArtiste}>Dr Caise, DJ Lambo</span>
-                    <span className={Styles.trackControl}><CaretRightFilled color='white'  /></span>
+                    <span style={{
+                        display: tracks[2] ? 'none':'inline'
+                    }} className={Styles.trackControl}><CaretRightFilled style={{
+                        fontSize: '23px', position: 'relative', top:'-6px'
+                    }} color='lavender'  /></span>
+                    <span style={{
+                        display: tracks[2] ? 'inline':'none'
+                    }} className={Styles.trackControl}>
+                    <PauseOutlined style={{
+                        fontSize: '23px', position: 'relative', top:'-6px'
+                    }} color='lavender'/>
+                    </span> 
                     </div>
                 </div>
-                <div className={Styles.trackActive}>
+                {/* Alioth */}
+                <div onClick={() => {
+                    track4();
+                    setTrack([false, false, false, !tracks[3], false])
+                }} className={`${tracks[3] ? Styles.trackActive:Styles.track}`}>
+                    <audio onEnded={() => {
+                        setTrack([false, false, false, !tracks[3], false]);
+                    }} ref={song4} src='./assets/songs/Alioth-min.mp3' ></audio>
                     <div className={Styles.subTrack11}>
                     <span className={Styles.trackTitle}>4. Alioth</span>
                     <span className={Styles.trackDuration}>3:27</span>
                     </div>
                     <div className={Styles.subTrack12}>
                     <span className={Styles.trackArtiste}>Dr Caise, DJ Lambo</span>
-                    <span className={Styles.trackControl}><PauseOutlined color='white'/></span>
+                    <span style={{
+                        display: tracks[3] ? 'none':'inline'
+                    }} className={Styles.trackControl}><CaretRightFilled style={{
+                        fontSize: '23px', position: 'relative', top:'-6px'
+                    }} color='lavender'  /></span>
+                    <span style={{
+                        display: tracks[3] ? 'inline':'none'
+                    }} className={Styles.trackControl}>
+                    <PauseOutlined style={{
+                        fontSize: '23px', position: 'relative', top:'-6px'
+                    }} color='lavender'/>
+                    </span> 
                     </div>
                 </div>
-                <div className={Styles.track}>
+                {/* Algol */}
+                <div onClick={() => {
+                    track5();
+                    setTrack([false, false, false, false, !tracks[4]])
+                }} className={`${tracks[4] ? Styles.trackActive:Styles.track}`}>
+                    <audio onEnded={() => {
+                        setTrack([false, false, false, false, !tracks[4]]);
+                    }} ref={song5} src='./assets/songs/Algol-min.mp3' ></audio>
                     <div className={Styles.subTrack11}>
                     <span className={Styles.trackTitle}>5. Algol</span>
                     <span className={Styles.trackDuration}>2:34</span>
                     </div>
                     <div className={Styles.subTrack12}>
                     <span className={Styles.trackArtiste}>Dr Caise, DJ Lambo</span>
-                    <span className={Styles.trackControl}><CaretRightFilled color='white'  /></span>
+                    <span style={{
+                        display: tracks[4] ? 'none':'inline'
+                    }} className={Styles.trackControl}><CaretRightFilled style={{
+                        fontSize: '23px', position: 'relative', top:'-6px'
+                    }} color='lavender'  /></span>
+                    <span style={{
+                        display: tracks[4] ? 'inline':'none'
+                    }} className={Styles.trackControl}>
+                    <PauseOutlined style={{
+                        fontSize: '23px', position: 'relative', top:'-6px'
+                    }} color='lavender'/>
+                    </span>  
                     </div>
                 </div>
+                <br />
+                <br />
+                <div className={Styles.seeAll}>
+                <p className={Styles.seeAllTxt}>See All</p><CaretRightOutlined color={'lavender'} style={{
+                    fontSize: '20px'
+                }} />
+            </div>
          </section>
          <section className={Styles.third}>
             <h1 className={Styles.txt8}>Other Releases</h1>
             <div className={Styles.centerDiv}>
-            <div className={Styles.leftTrack}>
+            <div id='observables' data-single='1' className={Styles.leftTrack}>
                 <Image source={['./assets/img/kk-min.png', './assets/img/kk.png']}
                 style={{
                 width: '265px'
@@ -103,7 +300,7 @@ function Home() {
             </div>
             </div>
             <div className={Styles.centerDiv}>
-            <div className={Styles.rightTrack}>
+            <div id='observables' data-single='2' className={Styles.rightTrack}>
                 <Image source={['./assets/img/bebe-min.png', './assets/img/bebe.png']}
                 style={{
                     width: '265px'
@@ -114,7 +311,7 @@ function Home() {
             </div>
             </div>
             <div className={Styles.centerDiv}>
-            <div className={Styles.leftTrack}>
+            <div id='observables' data-single='3' className={Styles.leftTrack}>
                 <Image source={['./assets/img/im-min.png', './assets/img/im.png']}
                 style={{
                 width: '265px'
@@ -125,13 +322,13 @@ function Home() {
             </div>
             </div>
             <div className={Styles.seeAll}>
-                <p className={Styles.seeAllTxt}>See All</p><CaretRightOutlined color={'white'} style={{
+                <p className={Styles.seeAllTxt}>See All</p><CaretRightOutlined color={'lavender'} style={{
                     fontSize: '20px'
                 }} />
             </div>
          </section>
          <section className={Styles.fourth}>
-         <h1 className={Styles.txt8}>Instagram Feed</h1>
+         <h1 className={Styles.txt8}>Instagram Feeds</h1>
          <div className={Styles.instaFlex}>
              <div style={{
                 width: '150px',
@@ -145,10 +342,12 @@ function Home() {
                     height: '150px'
                 }} />
                 <div className={Styles.instaOverlay} style={{display: 'flex'}}>
-                <InstagramOutlined style={{
-                    color: 'white',
+                    <a href="https://www.instagram.com/djlambo_/">                        
+                <InstagramOutlined  style={{
+                    color: 'lavender',
                     fontSize: '30px'
                 }}/>
+                    </a>
                 </div>
              </div>
              </div>
@@ -163,11 +362,13 @@ function Home() {
                     width: '150px',
                     height: '150px'
                 }} />
-                <div className={Styles.instaOverlay} style={{display: 'none'}}>
-                <InstagramOutlined style={{
-                    color: 'white',
+                <div className={Styles.instaOverlay} style={{display: 'flex'}}>
+                <a href="https://www.instagram.com/djlambo_/">                        
+                <InstagramOutlined  style={{
+                    color: 'lavender',
                     fontSize: '30px'
                 }}/>
+                    </a>
                 </div>
              </div>
              </div>
@@ -182,11 +383,13 @@ function Home() {
                     width: '150px',
                     height: '150px'
                 }} />
-                <div className={Styles.instaOverlay} style={{display: 'none'}}>
-                <InstagramOutlined style={{
-                    color: 'white',
+                <div className={Styles.instaOverlay} style={{display: 'flex'}}>
+                <a href="https://www.instagram.com/djlambo_/">                        
+                <InstagramOutlined  style={{
+                    color: 'lavender',
                     fontSize: '30px'
                 }}/>
+                    </a>
                 </div>
              </div>
              </div>
@@ -201,15 +404,17 @@ function Home() {
                     width: '150px',
                     height: '150px'
                 }} />
-                <div className={Styles.instaOverlay} style={{display: 'none'}}>
-                <InstagramOutlined style={{
-                    color: 'white',
+                <div className={Styles.instaOverlay} style={{display: 'flex'}}>
+                <a href="https://www.instagram.com/djlambo_/">                        
+                <InstagramOutlined  style={{
+                    color: 'lavender',
                     fontSize: '30px'
                 }}/>
+                    </a>
                 </div>
              </div>
              </div>
-             <div style={{
+             <div id='observables' data-ticket='true' style={{
                 width: '150px',
                 height: '150px'
              }}>
@@ -220,11 +425,13 @@ function Home() {
                     width: '150px',
                     height: '150px'
                 }} />
-                <div className={Styles.instaOverlay} style={{display: 'none'}}>
-                <InstagramOutlined style={{
-                    color: 'white',
+                <div className={Styles.instaOverlay} style={{display: 'flex'}}>
+                <a href="https://www.instagram.com/djlambo_/">                        
+                <InstagramOutlined  style={{
+                    color: 'lavender',
                     fontSize: '30px'
                 }}/>
+                    </a>
                 </div>
              </div>
              </div>
@@ -239,11 +446,13 @@ function Home() {
                     width: '150px',
                     height: '150px'
                 }} />
-                <div className={Styles.instaOverlay} style={{display: 'none'}}>
-                <InstagramOutlined style={{
-                    color: 'white',
+                <div className={Styles.instaOverlay} style={{display: 'flex'}}>
+                    <a href="https://www.instagram.com/djlambo_/">                        
+                <InstagramOutlined  style={{
+                    color: 'lavender',
                     fontSize: '30px'
                 }}/>
+                    </a>
                 </div>
              </div>
              </div>
@@ -321,7 +530,7 @@ function Home() {
          </div>
          </section>
         <section className={Styles.fifth}>
-        <h1 className={Styles.txt8}>Blog Posts</h1>
+        <h1 id="observables" data-outta='true' className={Styles.txt8}>Blog Posts</h1>
             <div className={Styles.blogCont}>
                 <p className={Styles.blogDate}>
                 january 11, 2019
@@ -337,7 +546,7 @@ function Home() {
                 present to her grandchildren...
                 </p>
                 <button className={Styles.blogButton}>
-                READ MORE<CaretRightFilled color='white' style={{
+                READ MORE<CaretRightFilled color='lavender' style={{
                 fontSize: '20px',
                 fontWeight: 'bolder',
                 position: 'relative',
@@ -360,7 +569,7 @@ function Home() {
                 taste and all the different paths... 
                 </p>
                 <button className={Styles.blogButton}>
-                READ MORE<CaretRightFilled color='white' style={{
+                READ MORE<CaretRightFilled color='lavender' style={{
                 fontSize: '20px',
                 fontWeight: 'bolder',
                 position: 'relative',
@@ -383,7 +592,7 @@ function Home() {
                 me but I know that men that come...
                 </p>
                 <button className={Styles.blogButton}>
-                READ MORE<CaretRightFilled color='white' style={{
+                READ MORE<CaretRightFilled color='lavender' style={{
                 fontSize: '20px',
                 fontWeight: 'bolder',
                 position: 'relative',
@@ -392,8 +601,21 @@ function Home() {
                 </button>
             </div>
         </section>
+        <div id='observables' data-footer='true' className={Styles.footerCont}>
         <Footer />
         </div>
+        </div>
+        <Toaster toastOptions={{
+        style: {
+        fontFamily: 'Montserrat',
+        color: '#424449',
+        fontWeight:'500',
+        padding: '2px',
+        fontSize:'18px',
+        wordBreak: 'keep-all',
+        lavenderSpace: 'nowrap'
+        },
+        }}/>
         </>
     );
 }
