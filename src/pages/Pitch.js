@@ -23,7 +23,7 @@ function Pitch() {
     }
     `;
     return (
-<main className={Styles.main} style={{ padding: '16px' }}>
+<main className={Styles.main} style={{ padding: '16px'}}>
     <ArrowLeftOutlined onClick={() => {
                 navigate('/')
             }} style={{
@@ -66,6 +66,14 @@ function Pitch() {
           <Link href="https://github.com/jedstroke">@jedstroke</Link>
         </p>
       </footer>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
     </main>
     );
 }
