@@ -4,6 +4,7 @@
     height: 130vh;
     position: fixed;
     display: flex;
+    overflow-y: auto;
     flex-direction: column;
     justify-content: center;
     align-items: center;
