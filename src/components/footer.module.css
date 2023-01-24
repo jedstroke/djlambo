@@ -15,7 +15,7 @@
 }
 .textCenter {
     position: relative;
-    top: -5px;
+    top: -15px;
     text-align: center;
 }
 .footerLogo {
@@ -23,8 +23,10 @@
     height: 93px;
 }
 .iconSet {
-   display: flsex; 
+   display: flex; 
    gap: 20px;
+   position: relative;
+   top: -20px;
    font-size: 35px;
 }
 .iconSet > a {

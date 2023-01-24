@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import WaveSurfer from 'wavesurfer.js';
 import styled from 'styled-components';
-import { PauseCircleTwoTone, PlayCircleTwoTone } from '@ant-design/icons';
+import { PauseOutlined, PlayCircleOutlined } from '@ant-design/icons';
 
 const Waveform = ({ audio }) => {
   const containerRef = useRef();
@@ -38,13 +38,23 @@ const Waveform = ({ audio }) => {
         }}
         type="button"
       >
-        {isPlaying ? <PauseCircleTwoTone style={{
-          fontSize: '3em',
-          background: 'lavender'
-        }} /> : <PlayCircleTwoTone style={{
-          fontSize: '3em',
-          background: 'lavender'
-        }} />}
+        {isPlaying ? (
+          <PauseOutlined
+            style={{
+              fontSize: "3em",
+              background: "transparent",
+              borderRadius: "100%",
+            }}
+          />
+        ) : (
+          <PlayCircleOutlined
+            style={{
+              fontSize: "3em",
+              background: "transparent",
+              borderRadius: "100%",
+            }}
+          />
+        )}
       </button>
       <div ref={containerRef} />
     </WaveSurferWrap>

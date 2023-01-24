@@ -1,7 +1,6 @@
 import { Routes, Route} from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
-import './App.css';
 import Home from "./pages/Home";
 import Pitch from "./pages/Pitch";
 

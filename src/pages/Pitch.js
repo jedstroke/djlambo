@@ -1,8 +1,8 @@
 import { useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
-import Waveform from '../waveform';
-import lamboClip from '../lambo.mp3';
-import Styles from '../components/pitch.module.css';
+import Waveform from '../components/waveform';
+import lamboClip from "../components/VoiceNote/lambo.mp3";
+import Styles from '../styles/pitch.module.css';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 function Pitch() {
     const navigate = useNavigate();
@@ -22,7 +22,7 @@ function Pitch() {
     box-shadow: inset 0 -40px 0 0 var(--primary);
     }
     `;
-    return (
+    return (<>
 <main className={Styles.main} style={{ padding: '16px'}}>
     <ArrowLeftOutlined onClick={() => {
                 navigate('/')
@@ -33,15 +33,14 @@ function Pitch() {
           left: '5px',
           fontSize: '40px',
           fontWeight: 'bolder',
-          color: '#2593fc',
-          background:'lavender'
+          color: '#2593fc'
       }} />
       <h1 style={{
           width:'300px',
           textAlign:'center',
           position:'relative',
           top:'-35px'
-      }}>My pitch to <br /> <span className={Styles.span}>DJ LAMBO</span> <br /> And Co <span className={Styles.span}>DEVs</span> <br/> (<span className={Styles.span}>Voice Note</span>)</h1>
+      }}>My pitch to <br /> <span className={Styles.span}>DJ Lambo</span> <br /> And Co <span className={Styles.span}>Devs</span> <br/> (<span className={Styles.span}>Voice Note</span>)</h1>
       <p style={{
         position:'relative',
         top:'-20px'
@@ -66,15 +65,10 @@ function Pitch() {
           <Link href="https://github.com/jedstroke">@jedstroke</Link>
         </p>
       </footer>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
+        <br />
+        <br />
+        <br />
     </main>
-    );
+    </>);
 }
 export default Pitch;

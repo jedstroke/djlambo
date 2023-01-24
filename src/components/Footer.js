@@ -16,6 +16,10 @@ function Footer() {
             <TwitterSquareFilled />
             </a>
             </div>
+            <br />
+            <br />
+            <br />
+            <br />
         </div>
         </>);
 }
