@@ -1,6 +1,8 @@
 # DJ Lambo Elevator Pitch Website
 ### 👉🏽 [Live Deploy](https://djlambo.onrender.com)
 
+### And DJ Lambo said this [link 🔗](https://www.instagram.com/reel/CjD-AbbAZQQ/?utm_source=ig_web_copy_link)
+
 ## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
