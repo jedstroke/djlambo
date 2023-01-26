@@ -1,19 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.13de6b0f.css?64",
-    "main.js": "/static/js/main.72e7633d.js?31",
-    "static/js/787.068b2a46.chunk.js?3": "/static/js/787.068b2a46.chunk.js?3",
+    "main.css": "/static/css/main.5c298651.css",
+    "main.js": "/static/js/main.3922f92a.js",
     "static/media/lambo.mp3": "/static/media/lambo.49b94e2aa2f87828f0e6.mp3",
     "static/media/lambox.png": "/static/media/lambox.de08f040344e67759dfd.png",
     "static/media/insta3.png": "/static/media/insta3.8283eef4117c96fe5ce3.png",
     "static/media/sharky-min.jpeg": "/static/media/sharky-min.cf2310cd7afdce60d761.jpeg",
     "index.html": "/index.html",
-    "main.13de6b0f.css.map?64": "/static/css/main.13de6b0f.css.map?64",
-    "main.72e7633d.js.map?31": "/static/js/main.72e7633d.js.map?31",
-    "787.068b2a46.chunk.js.map?3": "/static/js/787.068b2a46.chunk.js.map?3"
+    "main.5c298651.css.map": "/static/css/main.5c298651.css.map",
+    "main.3922f92a.js.map": "/static/js/main.3922f92a.js.map"
   },
   "entrypoints": [
-    "static/css/main.13de6b0f.css?64",
-    "static/js/main.72e7633d.js?31"
+    "static/css/main.5c298651.css",
+    "static/js/main.3922f92a.js"
   ]
 }
