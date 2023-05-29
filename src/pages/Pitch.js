@@ -1,7 +1,7 @@
 import { useNavigate} from 'react-router-dom';
 import styled from 'styled-components';
 import Waveform from '../components/waveform';
-import lamboClip from "../components/VoiceNote/lambo.mp3";
+import lamboClip from "../components/VoiceNote/thanks.mp3";
 import Styles from '../styles/pitch.module.css';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 function Pitch() {
@@ -40,7 +40,7 @@ function Pitch() {
           textAlign:'center',
           position:'relative',
           top:'-35px'
-      }}>My pitch to <br /> <span className={Styles.span}>DJ Lambo</span> <br /> And Co <span className={Styles.span}>Devs</span> <br/> (<span className={Styles.span}>Voice Note</span>)</h1>
+      }}><span className={Styles.span}>Voice Note</span></h1>
       <p style={{
         position:'relative',
         top:'-20px'
