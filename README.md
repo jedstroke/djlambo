@@ -1,5 +1,5 @@
 # DJ Lambo Elevator Pitch Website: And she said this [link 🔗](https://www.instagram.com/reel/CjD-AbbAZQQ/?utm_source=ig_web_copy_link)
-### 👉🏽 [Live Deploy](https://djlambo.jedhshock.com)
+### 🌍 [Live Deploy](https://djlambo.jedhshock.com)
 
 ## Getting Started with Create React App
 
